@@ -4,7 +4,7 @@ const Pool = pg.Pool;
 const config = {
     database: 'todo_list',
     host: 'localhost',
-    port: 5342,
+    port: 5432,
     max: 10,
     idleTimeoutMillis: 10000
 }
