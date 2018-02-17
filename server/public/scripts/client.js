@@ -8,6 +8,7 @@ function onReady () {
     });
     $('#outputItems').on('click', '#deleteBtn', deleteItem );
     $('#outputItems').on('click', '#completeBtn', markComplete );
+    $('#outputItems').on('click', '#undoCompleteBtn', markIncomplete );
 
 
     }//end onReady
@@ -17,7 +18,6 @@ function postTdItem () {
     let item = {
         task: $('#taskIn').val(),
         duedate: $('#dueDateIn').val(),
-        notes: $('#notesIn').val(),
         complete: 'no'
     };
    console.log(item);
@@ -40,9 +40,7 @@ function displayItems(obj) {
     for (item of obj) {
         output.append(`<tr><td>${item.task}</td>
         <td>${item.duedate.substring(5,10)}</td>
-        <td>${item.notes}</td>
-        <td>${item.complete}</td><td><button id="completeBtn" data-id="${item.id}">
-        Mark Completed</button></td>
+        <td>${item.complete}</td><td>${changeCompleteBtn (item.complete, item.id)}</td>
         <td><button id="deleteBtn" data-id="${item.id}">Delete</button></td></tr>`);
     }
 }
@@ -86,6 +84,33 @@ function markComplete () {
         data: {itemId: id}
     }).done(function (response) {
         console.log('item completed');
+        getItems ();
+    }).fail(function (response) {
+        console.log(response);
+    })
+}
+
+function changeCompleteBtn (input, id) { 
+    if (input == 'no') {
+        return `<button id="completeBtn" data-id="${id}">
+        Mark Completed</button>`;
+    } else if (input == 'yes') {
+        return `<button id="undoCompleteBtn" data-id="${id}">
+        Mark Not Complete</button>`
+    };
+
+}
+
+function markIncomplete () {
+    let id = $(this).data('id');
+    console.log(id);
+    
+    $.ajax({
+        type:'put',
+        url: '/todo/incomplete',
+        data: {itemId: id}
+    }).done(function (response) {
+        console.log('item no longer completed');
         getItems ();
     }).fail(function (response) {
         console.log(response);

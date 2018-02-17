@@ -12,9 +12,9 @@ td {
 }
 
 table, th, td {
-    border: 1px solid black;
+    border: 1px solid gray;
 }
 
 body {
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-family: 'Verdana', 'Helvetica';
 }

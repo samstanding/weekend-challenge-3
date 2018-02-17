@@ -3,8 +3,16 @@ now i need to develop the categories logic
 -- I think what would look best is to have a drop down of categories, which then determined how the item would be displayed. Each drop down would have a separate table, and each item of that category would sit in its respective table
 What would that look like?
 You'd set up different data tables based on the categories you made
+Need to set up categories drop down in Html:
+going to make 5 categories:
+    -home
+    -work
+    -exercise
+    -hobbies
+    -shopping
 When an item is selected it is added to the same intake table and sent to the router
 my POST function will have to edited to contain the logic that determined what table the new item would be saved in
+I would then need to set up a different get function for each table. 
 something like  `INSERT INTO $1 Values...`
 how would keep that data so on each item so that i could delete or mark as complete?
 you could have a column in each table that also contained that information, that would be helpful in locating the data in both the DB and DOM

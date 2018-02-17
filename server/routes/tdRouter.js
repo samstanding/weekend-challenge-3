@@ -8,8 +8,8 @@ router.post('/add', function (req, res) {
     console.log(item);
     const sqlText = `INSERT INTO todos
         (task, duedate, notes, complete) 
-        VALUES ($1, $2, $3, $4)`;
-    pool.query(sqlText, [item.task, item.duedate, item.notes, item.complete])
+        VALUES ($1, $2, $3)`;
+    pool.query(sqlText, [item.task, item.duedate, item.complete])
     .then ((result) => {
         console.log(`added item`);
         res.sendStatus(201);
@@ -20,7 +20,7 @@ router.post('/add', function (req, res) {
 })
 
 router.get('/getitems', function (req, res) {
-    const sqlText = `SELECT * FROM todos ORDER BY id ASC`;
+    const sqlText = `SELECT * FROM todos ORDER BY complete ASC`;
     pool.query(sqlText)
     .then(function (result) {
         console.log('got items');
@@ -57,6 +57,18 @@ router.put('/complete', function (req, res) {
     })
 })
 
+router.put('/incomplete', function (req, res) {
+    let id = req.body.itemId;
+    const sqlText = `UPDATE todos SET complete = 'no' WHERE id= $1`;
+    pool.query(sqlText, [id])
+    .then(function (result) {
+    console.log('item no longer completed ');
+    res.sendStatus(200);
+}).catch (function (error) {
+    console.log('error on incomplete');
+    res.sendStatus(500);
+    })
+})
 
 
 module.exports = router;
