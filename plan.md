@@ -9,6 +9,12 @@ What I'm thinking is that i stick my category get function inside the display it
 
 sooo I'm thinking that I need to put the get request in the show category function. 
 
+so that all worked... 
+now two more things before I start making my things, and styling:
+1) create an are you sure before you delete a task:
+    -- I really hate alerts or pop ups like that-- but that does seem like standard practice for something like that. I'll create an alert and see how that feels. I realized that i don't always notice them. 
+    --What I
+
 
 Then once you had the data- you could use the category column tag to determine what table the item would be placed in
 

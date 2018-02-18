@@ -32,18 +32,6 @@ router.get('/getitems', function (req, res) {
     })
 })
 
-// router.get('/getcategory', function (req, res) {
-//     const sqlText = `SELECT * FROM categories`;
-//     pool.query(sqlText)
-//     .then(function (result) {
-//         console.log('got category info');
-//         res.send(result.rows);
-//     }).catch (function (error) {
-//         console.log(`error on get categories`);
-//         res.sendStatus(500);
-// })
-// })
-
 router.post('/addcategory', function (req, res) {
     let item = req.body;
     const sqlText = `INSERT INTO categories (category, task_id)
