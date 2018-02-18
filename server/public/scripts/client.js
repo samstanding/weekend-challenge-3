@@ -55,10 +55,11 @@ function displayItems(obj) {
     let output = $('#outputItems');
     output.empty();
     for (item of obj) {
+        console.log(item);
         output.append(`<tr><td>${item.task}</td>
         <td>${item.duedate.substring(5,10)}</td>
         <td>${item.complete}</td><td>${changeCompleteBtn (item.complete, item.id)}</td>
-        <td>${getCategory (item.id)}</td>
+        <td>${item.category}</td>
         <td><button id="deleteBtn" data-id="${item.id}">Delete</button></td></tr>`);
     }
 }
@@ -136,22 +137,22 @@ function markIncomplete () {
     })
 }
 
-function getCategory (id) {
-    $.ajax({
-        type:'GET',
-        url: '/getcategory',
-    }).done(function (respnose) {
-        console.log(`category gotten: ${response}`);
-        displayCategory(response, id)
-    }).fail(function (response) {
-        console.log(response);
-    })
-} 
+// function getCategory (id) {
+//     $.ajax({
+//         type:'GET',
+//         url: '/getcategory',
+//     }).done(function (respnose) {
+//         console.log(`category gotten: ${response}`);
+//         displayCategory(response, id)
+//     }).fail(function (response) {
+//         console.log(response);
+//     })
+// } 
 
-function displayCategory (categoryObject, id ) {
-    for (item of categoryObject) {
-        if (item.task_id === id) {
-            return  item.category;
-        }
-    }
-}
+// function displayCategory (categoryObject, id ) {
+//     for (item of categoryObject) {
+//         if (item.task_id === id) {
+//             return  item.category;
+//         }
+//     }
+// }
