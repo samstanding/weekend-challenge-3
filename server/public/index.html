@@ -15,6 +15,12 @@
         <form>
             <input type="text" id="taskIn" placeholder="task">
             <input type="date" min="2018-02-16" max="2018-12-31" id="dueDateIn" placeholder= "to-do by">
+            <select name="categories" id="categoriesIn">
+                <option value="home">home</option>
+                <option value="work">work</option>
+                <option value="hobbies">hobbies</option>
+                <option value="shopping">shopping</option>
+            </select>
             <button id="addTaskBtn">add task</button>
         </form>
     </div>
@@ -27,6 +33,7 @@
                     <th>Due Date</th>
                     <th>Completed?</th>
                     <th>Mark Complete</th>
+                    <th>Category</th>
                     <th>Delete</th>
                 </tr>
             </thead>

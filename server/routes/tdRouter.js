@@ -7,7 +7,7 @@ router.post('/add', function (req, res) {
     const item = req.body;
     console.log(item);
     const sqlText = `INSERT INTO todos
-        (task, duedate, notes, complete) 
+        (task, duedate, complete) 
         VALUES ($1, $2, $3)`;
     pool.query(sqlText, [item.task, item.duedate, item.complete])
     .then ((result) => {
@@ -26,7 +26,32 @@ router.get('/getitems', function (req, res) {
         console.log('got items');
         res.send(result.rows);
     }).catch (function (error) {
-        console.log(`error on post`);
+        console.log(`error on get`);
+        res.sendStatus(500);
+    })
+})
+
+router.get('/getcategory', function (req, res) {
+    const sqlText = `SELECT * FROM categories`;
+    pool.query(sqlText)
+    .then(function (result) {
+        console.log('got category info');
+        res.send(result.rows);
+    }).catch (function (error) {
+        console.log(`error on get categories`);
+        res.sendStatus(500);
+})
+
+router.post('/addcategory', function (req, res) {
+    let item = req.body;
+    const sqlText = `INSERT INTO categories (category, task_id)
+        VALUES ($1, (SELECT id FROM todos WHERE task = $2))`
+    pool.query(sqlText, [item.category, item.task])
+    .then(function (result) {
+        console.log('added category ');
+        res.sendStatus(201);
+    }).catch(function (error) {
+        console.log('error on category');
         res.sendStatus(500);
     })
 })

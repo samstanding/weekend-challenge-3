@@ -27,12 +27,29 @@ function postTdItem () {
         data: item
     }).done(function (response) {
         console.log('send item');
+        postCategory();
         getItems();
-        clearInputs();
     }).fail(function (error){
         console.log(error);        
     })
 }
+
+function postCategory () {
+    let item = { 
+        task : $('#taskIn').val(),
+        category: $ ('#categoriesIn').val()
+    }
+    $.ajax({
+        type:'POST',
+        url:'/todo/addcategory',
+        data: item
+    }).done(function (response) {
+        console.log('added category');
+    }).fail(function (error) {
+        console.log(error);
+    })
+}
+
 
 function displayItems(obj) {
     let output = $('#outputItems');
@@ -41,6 +58,7 @@ function displayItems(obj) {
         output.append(`<tr><td>${item.task}</td>
         <td>${item.duedate.substring(5,10)}</td>
         <td>${item.complete}</td><td>${changeCompleteBtn (item.complete, item.id)}</td>
+        <td>${getCategory (item.id)}</td>
         <td><button id="deleteBtn" data-id="${item.id}">Delete</button></td></tr>`);
     }
 }
@@ -52,6 +70,7 @@ function getItems () {
     }).done(function (response) {
         displayItems(response);
         console.log('you got to do items');
+        clearInputs();
     }).fail(function (response){
         console.log('you did not get items');    
     })
@@ -115,4 +134,24 @@ function markIncomplete () {
     }).fail(function (response) {
         console.log(response);
     })
+}
+
+function getCategory (id) {
+    $.ajax({
+        type:'GET',
+        url: '/getcategory',
+    }).done(function (respnose) {
+        console.log(`category gotten: ${response}`);
+        displayCategory(response, id)
+    }).fail(function (response) {
+        console.log(response);
+    })
+} 
+
+function displayCategory (categoryObject, id ) {
+    for (item of categoryObject) {
+        if (item.task_id === id) {
+            return  item.category;
+        }
+    }
 }
