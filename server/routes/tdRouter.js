@@ -60,6 +60,8 @@ router.post('/addcategory', function (req, res) {
 
 router.delete('/delete', function (req, res){
     let id = req.body.itemId;
+    console.log(id);
+    
     const sqlText = `DELETE FROM todos WHERE id = $1`;
     pool.query(sqlText, [id])
     .then(function (result) {
