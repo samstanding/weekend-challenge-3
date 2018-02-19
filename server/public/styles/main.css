@@ -19,20 +19,18 @@ table, th, td {
 
 body {
     font-family: 'Verdana', 'Helvetica';
-    background: linear-gradient(to bottom right, #0F1626, coral);  
-    height:auto;  
+    background-color: #0F1626;  
 }
 #content {
     background-color: #F5F5F5;
     margin: auto;
     width: 75%;
-    height: auto;
+    height: max;
     border: 2px solid #AB987A; 
-    padding: 0px; 
 }
 
 .yes {
-    background-color: dodgerblue;
+    background-color: slategrey;
 }
 
 .late {
