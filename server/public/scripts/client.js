@@ -49,12 +49,10 @@ function postCategory () {
     })
 }
 
-
 function displayItems(obj) {
     let output = $('#outputItems');
     output.empty();
     for (item of obj) {
-        console.log(item);
         output.append(`<tr class="${item.complete} ${dateCheck(item)}"><td>${item.task}</td>
         <td>${item.duedate.substring(5,10)}</td>
         <td>${item.complete}</td><td>${changeCompleteBtn (item.complete, item.id)}</td>
@@ -122,8 +120,6 @@ function changeCompleteBtn (input, id) {
 
 function markIncomplete () {
     let id = $(this).data('id');
-    console.log('in incomplete');
-    
     $.ajax({
         type:'put',
         url: '/todo/incomplete',
@@ -139,8 +135,6 @@ function markIncomplete () {
 function dateCheck (taskObject) {
     let now  = Date.now();
     let itemDate = new Date (taskObject.duedate);
-    console.log(now, itemDate.getTime());
-    
     if (taskObject.complete == 'yes') {
         return '';
     } else if (itemDate.getTime() < now) {

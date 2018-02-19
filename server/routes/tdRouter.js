@@ -21,7 +21,7 @@ router.post('/add', function (req, res) {
 
 router.get('/getitems', function (req, res) {
     const sqlText = `SELECT * FROM todos
-    LEFT JOIN categories on categories.task_id = todos.id ORDER BY complete`;
+    LEFT JOIN categories on categories.task_id = todos.id ORDER BY complete, duedate ASC`;
     pool.query(sqlText)
     .then(function (result) {
         console.log('got items');
