@@ -1,8 +1,9 @@
 table{
     border-collapse: collapse;
-    width: 80%;
+    width: 85%;
     text-align: left;
     padding: 15px;
+    margin: auto;
     border: 1px solid black;
 }
 
@@ -12,11 +13,22 @@ td {
 }
 
 table, th, td {
+   
     border: 1px solid gray;
 }
 
 body {
     font-family: 'Verdana', 'Helvetica';
+    background: linear-gradient(to bottom right, #0F1626, coral);  
+    height:auto;  
+}
+#content {
+    background-color: #F5F5F5;
+    margin: auto;
+    width: 75%;
+    height: auto;
+    border: 2px solid #AB987A; 
+    padding: 0px; 
 }
 
 .yes {
@@ -24,5 +36,8 @@ body {
 }
 
 .late {
-    background-color: red;
+    background-color: coral;
+}
+#displayTodo {
+    margin: auto;
 }

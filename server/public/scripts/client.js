@@ -73,6 +73,7 @@ function getItems () {
         console.log('you did not get items');    
     })
 }
+
 function clearInputs () {
     $('#taskIn').val('');
     $('#dueDateIn').val('');
